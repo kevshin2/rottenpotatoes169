@@ -1,0 +1,120 @@
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-09-30 18:56:57 -0700
+Connecting to database specified by database.yml
+Served asset /rails.png - 304 Not Modified (268ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-09-30 18:57:00 -0700
+Processing by MoviesController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::StatementInvalid (Could not find table 'movies'):
+  app/controllers/movies_controller.rb:10:in `index'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/_trace.erb (7.2ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (209.4ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (56.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (37.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (15.7ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateMovies (20111119180638)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (7.9ms)[0m  CREATE TABLE "movies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "rating" varchar(255), "description" text, "release_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111119180638')[0m
+  [1m[35m (1.9ms)[0m  commit transaction
+  [1m[36m (1.5ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-10-05 17:40:11 -0700
+Connecting to database specified by database.yml
+Served asset /rails.png - 200 OK (6ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-10-05 17:40:15 -0700
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.5ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  Rendered movies/index.html.haml within layouts/application (15.8ms)
+Compiled application.css  (0ms)  (pid 8658)
+Compiled jquery.js  (3ms)  (pid 8658)
+Compiled jquery_ujs.js  (0ms)  (pid 8658)
+Compiled application.js  (23ms)  (pid 8658)
+Completed 200 OK in 172ms (Views: 164.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-10-05 17:40:15 -0700
+Served asset /application.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-10-05 17:40:15 -0700
+Served asset /jquery.js - 200 OK (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-10-05 17:40:15 -0700
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-10-05 17:40:16 -0700
+Served asset /application.js - 200 OK (8ms)
+
+
+Started GET "/movie" for 127.0.0.1 at 2013-10-05 17:47:52 -0700
+
+ActionController::RoutingError (No route matches [GET] "/movie"):
+  actionpack (3.2.14) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.14) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.14) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.14) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.14) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.14) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.14) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.14) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.14) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.14) lib/rails/engine.rb:484:in `call'
+  railties (3.2.14) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.14) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (41.1ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-10-05 17:47:55 -0700
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (16.8ms)[0m  SELECT "movies".* FROM "movies" 
+  Rendered movies/index.html.haml within layouts/application (19.9ms)
+Completed 200 OK in 126ms (Views: 61.8ms | ActiveRecord: 16.8ms)
+
+
+Started GET "/movies/new" for 127.0.0.1 at 2013-10-05 17:47:59 -0700
+Processing by MoviesController#new as HTML
+  Rendered movies/new.html.haml within layouts/application (303.5ms)
+Completed 200 OK in 317ms (Views: 308.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/movies" for 127.0.0.1 at 2013-10-05 17:48:03 -0700
+Processing by MoviesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"U0a6sYNeBzK7PJFnoNcPcIOGL3jUqVM+/kVhzCxAix0=", "movie"=>{"title"=>"sdf", "rating"=>"G", "release_date(1i)"=>"2013", "release_date(2i)"=>"10", "release_date(3i)"=>"6"}, "commit"=>"Save Changes"}
+  [1m[36m (1.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (104.9ms)[0m  INSERT INTO "movies" ("created_at", "description", "rating", "release_date", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sun, 06 Oct 2013 00:48:03 UTC +00:00], ["description", nil], ["rating", "G"], ["release_date", Sun, 06 Oct 2013 00:00:00 UTC +00:00], ["title", "sdf"], ["updated_at", Sun, 06 Oct 2013 00:48:03 UTC +00:00]]
+  [1m[36m (29.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/movies
+Completed 302 Found in 142ms (ActiveRecord: 135.8ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-10-05 17:48:04 -0700
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.9ms)[0m  SELECT "movies".* FROM "movies" 
+  Rendered movies/index.html.haml within layouts/application (1.3ms)
+Completed 200 OK in 14ms (Views: 9.6ms | ActiveRecord: 0.9ms)
