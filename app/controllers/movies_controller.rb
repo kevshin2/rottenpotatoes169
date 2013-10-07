@@ -11,20 +11,20 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.rating
-    @checked = params[:ratings] || session[:ratings] 
-    @sorts = params[:sorting] || session[:sorting]
+    
     if @sorts == "title"
       @movies = Movie.find(:all, :order => 'title')
     elsif @sorts == "release_date"
       @movies = Movie.find(:all, :order => 'release_date')
     end
-
+    @checked = params[:ratings] || session[:ratings] 
+    @sorts = params[:sorting] || session[:sorting] || {}
     if params[:sorting] != session[:sorting]
       session[:sorting] = @sorts
       redirect_to :sorting => @sorts, :ratings => @checked and return
     end
 
-    if params[:ratings] != session[:ratings] and @checked != nil
+    if params[:ratings] != session[:ratings] and @checked != {}
       session[:sorting] = @sorts
       session[:ratings] = @checked
       redirect_to :sorting => @sorts, :ratings => @checked and return
@@ -33,6 +33,8 @@ class MoviesController < ApplicationController
       @movies = Movie.find_all_by_rating(@checked.keys, :order => 'title')
     elsif @sorts == "release_date"
       @movies = Movie.find_all_by_rating(@checked.keys, :order => 'release_date')
+    else 
+      @movies = Movie.find(:all)
     end
     
   end
