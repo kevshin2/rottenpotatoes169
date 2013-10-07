@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
       session[:sorting] = @sorts
       session[:ratings] = @checked
       redirect_to :sorting => @sorts, :ratings => @checked and return
-    end]
+    end
     @movies = Movie.find_all_by_rating(@checked.keys, order)
     
   end
