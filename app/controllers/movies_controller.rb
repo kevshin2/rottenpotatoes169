@@ -13,9 +13,9 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.rating
     
     if @sorts == "title"
-      @movies = Movie.find(:all, :order => 'title')
+      order = {:order => 'title'}
     elsif @sorts == "release_date"
-      @movies = Movie.find(:all, :order => 'release_date')
+      order = {:order => 'release_date'}
     end
     @checked = params[:ratings] || session[:ratings] 
     @sorts = params[:sorting] || session[:sorting] || {}
@@ -29,13 +29,8 @@ class MoviesController < ApplicationController
       session[:ratings] = @checked
       redirect_to :sorting => @sorts, :ratings => @checked and return
     end
-    if @sorts == "title"
-      @movies = Movie.find_all_by_rating(@checked.keys, :order => 'title')
-    elsif @sorts == "release_date"
-      @movies = Movie.find_all_by_rating(@checked.keys, :order => 'release_date')
-    else 
-      @movies = Movie.find(:all)
-    end
+    
+    @movies = Movie.find_all_by_rating(@checked.keys, order)
     
   end
 
