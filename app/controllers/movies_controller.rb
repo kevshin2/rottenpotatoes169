@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = Movie.rating
+    
     @sorts = params[:sort] || session[:sort] 
     if @sorts == "title"
       order = {:order => 'title'}
@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
       order = {:order => 'release_date'}
       @d_style = 'hilite'
     end
+    @all_ratings = Movie.rating
     @checked = params[:ratings] || session[:ratings] || {}
     
     if params[:sort] != session[:sort]
