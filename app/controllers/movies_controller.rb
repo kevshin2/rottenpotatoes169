@@ -11,23 +11,25 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.rating
-    @sorts = params[:sorting] || session[:sorting] 
+    @sorts = params[:sort] || session[:sort] 
     if @sorts == "title"
       order = {:order => 'title'}
+      @style = 'hilite'
     elsif @sorts == "release_date"
       order = {:order => 'release_date'}
+      @d_style = 'hilite'
     end
     @checked = params[:ratings] || session[:ratings] || {}
     
-    if params[:sorting] != session[:sorting]
-      session[:sorting] = @sorts
-      redirect_to :sorting => @sorts, :ratings => @checked and return
+    if params[:sort] != session[:sort]
+      session[:sort] = @sorts
+      redirect_to :sort => @sorts, :ratings => @checked and return
     end
 
     if params[:ratings] != session[:ratings] and @checked != {}
-      session[:sorting] = @sorts
+      session[:sort] = @sorts
       session[:ratings] = @checked
-      redirect_to :sorting => @sorts, :ratings => @checked and return
+      redirect_to :sort => @sorts, :ratings => @checked and return
     end
     @movies = Movie.find_all_by_rating(@checked.keys, order)
     
